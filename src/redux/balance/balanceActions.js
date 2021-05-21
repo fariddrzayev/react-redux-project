@@ -1,4 +1,4 @@
-import { BUY_COFFEE, BUY_CAR, BUY_ITEM } from './balanceTypes'
+import { BUY_COFFEE, BUY_CAR, BUY_ITEM, TRANSFER, SALARY } from './balanceTypes'
 
 export const buyCoffee = (amount) => {
     return {
@@ -21,5 +21,19 @@ export const buyItem = (amount) => {
         data:{
             amount
         }
+    }
+}
+
+export const transfer = (amount) => {
+    return {
+        type: TRANSFER,
+        payload: amount
+    }
+}
+
+export const salary = (amount) => {
+    return {
+        type: SALARY,
+        payload: amount
     }
 }

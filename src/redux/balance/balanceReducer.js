@@ -1,16 +1,14 @@
-import { BUY_COFFEE, BUY_CAR, BUY_ITEM } from './balanceTypes'
+import { BUY_ITEM, TRANSFER, SALARY } from './balanceTypes'
 
 const initialState = {
     balance: 100
 }
 
 const balanceReducer = (state = initialState, action) => {
+
+
+    console.log(action)
     switch(action.type){
-        case BUY_COFFEE: 
-            return {
-                balance: state.balance + action.data.amount
-            }
-        break;
 
         case BUY_ITEM: 
             return {
@@ -18,9 +16,17 @@ const balanceReducer = (state = initialState, action) => {
             }
         break;
 
-        case BUY_CAR: return {
-            balance: state.balance -50
-        }
+        case TRANSFER: 
+            return {
+                balance: eval(state.balance) - eval(action.payload)
+            }
+        break;
+
+        case SALARY:
+            return {
+                balance: eval(state.balance) + eval(action.payload)
+            }
+
         default: return state
     }
 }
