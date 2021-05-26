@@ -18,7 +18,7 @@ function ProfileContainer(props) {
          )
 
 
-         console.log(amountToTransfer)
+        //  console.log(amountToTransfer)
 
     
 
@@ -35,11 +35,37 @@ function ProfileContainer(props) {
     }, []);
 
     useEffect(() => {
-        setTimeout(() => setCounter(counter - 1), 1000)
 
-        con 
+         
+        // console.log(setTimeout(function(){
+        //     return setCounter(counter - 1)
+        // }, 1000))
+        // () => setCounter(counter - 1)
+
+        setAmountToTransfer(1500)
+
+        // setTimeout(() => setCounter(counter - 1), 1000)
+
+        // con 
         // return counter-1
-        // counter > 7 && setTimeout(() => setCounter(counter - 1), 1000);
+
+        // counter > 7 && setTimeout(function(){
+        //     return setCounter(counter - 1)
+        // }, 1000);
+
+
+        counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+        // console.log(counter)
+
+        if(counter == 7){
+
+            props.transfer(-1500)
+            props.setCounter(10)
+
+            
+        }
+
+
       }, [counter]);
 
     return (
