@@ -4,10 +4,10 @@ import { buyCar, buyItem, transfer, salary } from '../redux/balance/balanceActio
 
 function ProfileContainer(props) {
 
-    const [number, setNumber] = useState(1);
+    const [amountToTransfer, setAmountToTransfer] = useState(1);
     const [salary, setSalary] = useState(100);
+    const [counter, setCounter] = useState(10);
 
-    console.log(number)
     const itemList = props.item.map(item =>
 
             <div>
@@ -18,22 +18,29 @@ function ProfileContainer(props) {
          )
 
 
+         console.log(amountToTransfer)
 
     
 
     const [time, setTime] = useState(Date.now());
 
     useEffect(() => {
-        const interval = setInterval(() => setTime(Date.now()), 1000);
+        const interval = setInterval(() => props.salary(100), 5000);
         return () => {
-            props.salary(salary)
-            props.transfer(5)
+
+            // props.salary(salary)
+            // props.transfer(5)
             clearInterval(interval);
         };
     }, []);
 
+    useEffect(() => {
+        setTimeout(() => setCounter(counter - 1), 1000)
 
-
+        con 
+        // return counter-1
+        // counter > 7 && setTimeout(() => setCounter(counter - 1), 1000);
+      }, [counter]);
 
     return (
         <div>
@@ -43,9 +50,9 @@ function ProfileContainer(props) {
             {itemList}
             <br></br>
 
-            <input type="text" value={number} onChange={e => setNumber(e.target.value)} placeholder="Amount"></input>
-            <button onClick={() => props.transfer(number)}>Send</button>
-
+            <input type="text" value={amountToTransfer} onChange={e => setAmountToTransfer(e.target.value)} placeholder="Amount"></input>
+            <button onClick={() => props.transfer(amountToTransfer)}>Send</button>
+            <p>Novbeti artim: { counter} </p>
             {/* <button onClick={props.buyCoffee(10)} >Buy {props.item.item} ({props.item.price} AZN)</button> */}
             {/* <button onClick={(props.buyCar)}>Buy {props.item.item} ({props.item.price} AZN) </button> */}
         </div>
