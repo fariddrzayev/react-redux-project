@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import { buyCar, buyItem, transfer, salary } from '../redux/balance/balanceActions'
+import LogContainer from './LogContainer';
 
 function ProfileContainer(props) {
 
@@ -35,32 +36,12 @@ function ProfileContainer(props) {
     }, []);
 
     useEffect(() => {
-
-         
-        // console.log(setTimeout(function(){
-        //     return setCounter(counter - 1)
-        // }, 1000))
-        // () => setCounter(counter - 1)
-
-        setAmountToTransfer(1500)
-
-        // setTimeout(() => setCounter(counter - 1), 1000)
-
-        // con 
-        // return counter-1
-
-        // counter > 7 && setTimeout(function(){
-        //     return setCounter(counter - 1)
-        // }, 1000);
-
-
         counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
         // console.log(counter)
 
-        if(counter == 7){
-
-            props.transfer(-1500)
-            props.setCounter(10)
+        if(counter == 0){
+            props.salary(1500)
+            setCounter(10);
 
             
         }
@@ -78,9 +59,11 @@ function ProfileContainer(props) {
 
             <input type="text" value={amountToTransfer} onChange={e => setAmountToTransfer(e.target.value)} placeholder="Amount"></input>
             <button onClick={() => props.transfer(amountToTransfer)}>Send</button>
-            <p>Novbeti artim: { counter} </p>
+            <p>Novbeti artim  { counter} saniyeden olacaq </p>
             {/* <button onClick={props.buyCoffee(10)} >Buy {props.item.item} ({props.item.price} AZN)</button> */}
             {/* <button onClick={(props.buyCar)}>Buy {props.item.item} ({props.item.price} AZN) </button> */}
+            <LogContainer/>
+            
         </div>
     )
 }
