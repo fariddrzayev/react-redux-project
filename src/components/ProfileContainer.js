@@ -8,7 +8,36 @@ function ProfileContainer(props) {
     const [amountToTransfer, setAmountToTransfer] = useState(1);
     const [salary, setSalary] = useState(100);
     const [counter, setCounter] = useState(10);
-
+    // const [activity, setActivity] = useState(10);
+    const ArrayDep = () => {
+        const [randomNumber, setRandomNumber] = useState(0)
+        const [effectLogs, setEffectLogs] = useState([])
+      
+        useLayoutEffect(
+          () => {
+            setEffectLogs(prevEffectLogs => [...prevEffectLogs, 'effect fn has been invoked'])
+          },
+          [randomNumber]
+        )
+      
+        return (
+          <div>
+            <h1>{randomNumber}</h1>
+            <button
+              onClick={() => {
+                setRandomNumber(Math.random())
+              }}
+            >
+              Generate random number!
+            </button>
+            <div>
+              {effectLogs.map((effect, index) => (
+                <div key={index}>{'🍔'.repeat(index) + effect}</div>
+              ))}
+            </div>
+          </div>
+        )
+      }
     const itemList = props.item.map(item =>
 
             <div>
@@ -23,9 +52,10 @@ function ProfileContainer(props) {
 
     
 
-    const [time, setTime] = useState(Date.now());
+    // const [time, setTime] = useState(Date.now());
 
     useEffect(() => {
+        console.log(this)
         const interval = setInterval(() => props.salary(100), 5000);
         return () => {
 
@@ -35,19 +65,19 @@ function ProfileContainer(props) {
         };
     }, []);
 
-    useEffect(() => {
-        counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-        // console.log(counter)
+    // useEffect(() => {
+    //     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+    //     // console.log(counter)
 
-        if(counter == 0){
-            props.salary(1500)
-            setCounter(10);
+    //     if(counter == 0){
+    //         props.salary(1500)
+    //         setCounter(10);
 
             
-        }
+    //     }
 
 
-      }, [counter]);
+    //   }, [counter]);
 
     return (
         <div>
