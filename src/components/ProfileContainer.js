@@ -1,47 +1,20 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
-import { buyCar, buyItem, transfer, salary } from '../redux/balance/balanceActions'
+import {buyItem, transfer, salary } from '../redux/balance/balanceActions'
 import LogContainer from './LogContainer';
 
 function ProfileContainer(props) {
 
     const [amountToTransfer, setAmountToTransfer] = useState(1);
-    const [salary, setSalary] = useState(100);
     const [counter, setCounter] = useState(10);
-    // const [activity, setActivity] = useState(10);
-    const ArrayDep = () => {
-        const [randomNumber, setRandomNumber] = useState(0)
-        const [effectLogs, setEffectLogs] = useState([])
-      
-        useLayoutEffect(
-          () => {
-            setEffectLogs(prevEffectLogs => [...prevEffectLogs, 'effect fn has been invoked'])
-          },
-          [randomNumber]
-        )
-      
-        return (
-          <div>
-            <h1>{randomNumber}</h1>
-            <button
-              onClick={() => {
-                setRandomNumber(Math.random())
-              }}
-            >
-              Generate random number!
-            </button>
-            <div>
-              {effectLogs.map((effect, index) => (
-                <div key={index}>{'🍔'.repeat(index) + effect}</div>
-              ))}
-            </div>
-          </div>
-        )
-      }
-    const itemList = props.item.map(item =>
+  
 
-            <div>
-                <button onClick={()=>props.buyItem(item.price)}>
+
+    // console.log(props.balance)
+    const itemList = props.item.map((item,i) =>
+
+            <div key={i}>
+                <button onClick={()=>props.buyItem(item.price, item.name)}>
                     Buy {item.name} ({item.price} AZN)
                 </button>
             </div>
@@ -50,34 +23,31 @@ function ProfileContainer(props) {
 
         //  console.log(amountToTransfer)
 
-    
 
     // const [time, setTime] = useState(Date.now());
 
-    useEffect(() => {
-        console.log(this)
-        const interval = setInterval(() => props.salary(100), 5000);
-        return () => {
-
-            // props.salary(salary)
-            // props.transfer(5)
-            clearInterval(interval);
-        };
-    }, []);
-
     // useEffect(() => {
-    //     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-    //     // console.log(counter)
+    //     // console.log(this)
+    //     const interval = setInterval(() => props.salary(100), 2000);
+    //     return () => {
 
-    //     if(counter == 0){
-    //         props.salary(1500)
-    //         setCounter(10);
+    //         // props.salary(salary)
+    //         // props.transfer(5)
+    //         clearInterval(interval);
+    //     };
+    // }, [props]);
+
+    useEffect(() => {
+        counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+        // console.log(counter)
+
+        if(counter == 0){
+            props.salary(1500)
+            setCounter(10);
 
             
-    //     }
-
-
-    //   }, [counter]);
+        }
+      }, [counter]);
 
     return (
         <div>
@@ -108,8 +78,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         // buyCoffee: (amount) => dispatch(buyCoffee(amount)),
-        buyCar: () => dispatch(buyCar()),
-        buyItem: (amount) => dispatch(buyItem(amount)),
+        buyItem: (amount,name) => dispatch(buyItem(amount,name)),
         transfer: (amount) => dispatch(transfer(amount)),
         salary: (amount) => dispatch(salary(amount))
     }

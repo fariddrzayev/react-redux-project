@@ -2,12 +2,11 @@
 //     item: 'coffee',
 //     price: 10
 // }
-import { buyCoffee, buyCar } from '../balance/balanceActions'
 
 const initialState = [
     {
         name: 'coffee',
-        price: 10,
+        price: -10,
     },
     {
         name: 'car',

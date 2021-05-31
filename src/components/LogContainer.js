@@ -1,80 +1,49 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react'
+import React, {useState, useEffect} from 'react'
+import {connect} from 'react-redux'
+
 
 function LogContainer(props) {
 
-    const [amountToTransfer, setAmountToTransfer] = useState(1);
-    const [salary, setSalary] = useState(100);
-    const [counter, setCounter] = useState(10);
+  const [theArray, setTheArray] = useState([]);
+  // const addEntryClick = () => {
+  //     setTheArray(prevState => [...prevState, `Entry ${prevState.length}`]);
+  // };
 
+  // console.log(props.balance.logs)
+  useEffect(() => {
+    // setTheArray(oldArray => [...oldArray, `Entry ${oldArray.length}`])
+    // setInterval(() => setTheArray(oldArray => [...oldArray, `Entry ${oldArray.length}`]), 500);
+  }, []);
 
-    const ArrayDep = () => {
-        const [randomNumber, setRandomNumber] = useState(0)
-        const [effectLogs, setEffectLogs] = useState([])
-      
-        useLayoutEffect(
-          () => {
-            setEffectLogs(prevEffectLogs => [...prevEffectLogs, 'effect fn has been invoked'])
-          },
-          [randomNumber]
-        )
-      
-        return (
-          <div>
-            <h1>{randomNumber}</h1>
-            <button
-              onClick={() => {
-                setRandomNumber(Math.random())
-              }}
-            >
-              Generate random number!
-            </button>
-            <div>
-              {effectLogs.map((effect, index) => (
-                <div key={index}>{'🍔'.repeat(index) + effect}</div>
-              ))}
-            </div>
-          </div>
-        )
-      }
-
-    // const itemList = props.item.map(item =>
-
-    //         <div>
-    //             <button onClick={()=>props.buyItem(item.price)}>
-    //                 Buy {item.name} ({item.price} AZN)
-    //             </button>
-    //         </div>
-        //  )
-
-
-
-
-    return (
-        <div>
-
-            <div class="container">
-                <div class="row justify-content-md-center">
-                    <div class="col-md-4">
-                        <ul class="list-group">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                    </div>
-                
-                </div>
-            </div>
-            <div class="col-md-3 justify-content-md-center ">
-                
-            </div>
-            
+  return (
+    <div>
+      {/* <input type="button" onClick={addEntryClick} value="Add" />, */}
+        <div>{props.balance.logs.map((entry,i) =>
+          <div key={i}>{entry}</div>
+        )}
         </div>
-    )
+    </div>
+  )
+  
 }
 
-export default LogContainer
 
+const mapStateToProps = state => {
+  return {
+      balance: state.balance,
+      logs: state
+  }
+}
 
+// const mapDispatchToProps = dispatch => {
+//   return {
+//       // buyCoffee: (amount) => dispatch(buyCoffee(amount)),
+//       buyCar: () => dispatch(buyCar()),
+//       buyItem: (amount) => dispatch(buyItem(amount)),
+//       transfer: (amount) => dispatch(transfer(amount)),
+//       salary: (amount) => dispatch(salary(amount))
+//   }
+// }
+
+export default connect(mapStateToProps)(LogContainer)
 
