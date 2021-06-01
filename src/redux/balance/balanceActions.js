@@ -21,7 +21,7 @@ export const buyItem = (amount,name) => {
         data:{
             amount,
         },
-        desc: `${name} olan xercisniz: ${amount}`
+        desc: `You spent : ${amount} AZN for ${name}`
 
     }
 }
@@ -30,7 +30,7 @@ export const transfer = (amount) => {
     return {
         type: TRANSFER,
         payload: amount,
-        desc: `Balansinizdan ${amount} miqdaqinda pul kucuruldu`
+        desc: `Successfully transfered ${amount} AZN from your balance`
     }
 }
 
@@ -38,6 +38,6 @@ export const salary = (amount) => {
     return {
         type: SALARY,
         payload: amount,
-        desc: `Maashadan gelen miqdar: ${amount}`
+        desc: `Salary: +${amount} AZN`
     }
 }

@@ -51,18 +51,15 @@ function ProfileContainer(props) {
 
     return (
         <div>
-            <h3>Balance: {props.balance.balance}</h3>
+
+            {/* <h3>Balance: {props.balance.balance}</h3>
             <br></br>
-            
             {itemList}
             <br></br>
-
             <input type="text" value={amountToTransfer} onChange={e => setAmountToTransfer(e.target.value)} placeholder="Amount"></input>
             <button onClick={() => props.transfer(amountToTransfer)}>Send</button>
-            <p>Novbeti artim  { counter} saniyeden olacaq </p>
-            {/* <button onClick={props.buyCoffee(10)} >Buy {props.item.item} ({props.item.price} AZN)</button> */}
-            {/* <button onClick={(props.buyCar)}>Buy {props.item.item} ({props.item.price} AZN) </button> */}
-            <LogContainer/>
+            <p>Next salary will be in { counter} seconds </p>
+            <LogContainer/> */}
             
         </div>
     )
